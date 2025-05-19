@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-Net Image Results</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+  />
+  <style>
+    .hidden { display: none; }
+    .img-wrapper img { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+  <div class="container results-container">
+    <header>
+      <h1><i class="fas fa-cut"></i> U-Net Image Segmentation</h1>
+      <a href="{{ url_for('unet') }}" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to U-Net Upload
+      </a>
+    </header>
+
+    <div class="controls-panel">
+      <div class="control-group">
+        <label>Display Mode:</label>
+        <div class="toggle-buttons">
+          <button class="toggle-btn active" data-mode="original">Original</button>
+          <button class="toggle-btn" data-mode="segmented">Segmented</button>
+          <button class="toggle-btn" data-mode="grayscale">Grayscale</button>
+          <button class="toggle-btn" data-mode="overlay">Overlay</button>
+        </div>
+      </div>
+      <div class="control-group">
+        <button id="download-btn" class="download-btn">
+          <i class="fas fa-download"></i> Download
+        </button>
+      </div>
+    </div>
+
+    <div class="img-wrapper">
+      <img
+        id="original-img"
+        src="{{ url_for('static', filename='uploads/' + original) }}"
+        alt="Original"
+      />
+      <img
+        id="segmented-img"
+        class="hidden"
+        src="{{ url_for('static', filename='uploads/processed/' + segmented) }}"
+        alt="Segmented"
+      />
+      <img
+        id="grayscale-img"
+        class="hidden"
+        src="{{ url_for('static', filename='uploads/processed/' + grayscale) }}"
+        alt="Grayscale"
+      />
+      <img
+        id="overlay-img"
+        class="hidden"
+        src="{{ url_for('static', filename='uploads/processed/' + overlay) }}"
+        alt="Overlay"
+      />
+    </div>
+
+    <div class="download-panel">
+      <h3>Download Options</h3>
+      <div class="download-options">
+        <a href="{{ url_for('download', fn=original) }}" class="download-option">
+          <i class="fas fa-image"></i><span>Original</span>
+        </a>
+        <a href="{{ url_for('download', fn=segmented) }}" class="download-option">
+          <i class="fas fa-layer-group"></i><span>Segmented</span>
+        </a>
+        <a href="{{ url_for('download', fn=grayscale) }}" class="download-option">
+          <i class="fas fa-adjust"></i><span>Grayscale</span>
+        </a>
+        <a href="{{ url_for('download', fn=overlay) }}" class="download-option">
+          <i class="fas fa-object-group"></i><span>Overlay</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/results.js') }}"></script>
+</body>
+</html>

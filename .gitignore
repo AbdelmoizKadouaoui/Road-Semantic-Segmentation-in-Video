@@ -1,0 +1,10 @@
+# Ignore dataset folders
+dataset/
+ML Projet V3/dataset/
+Ptjoet_ML_Yolo/datasets/
+
+datasets/
+# Other common ignores (optional)
+__pycache__/
+*.pyc
+*.ipynb_checkpoints

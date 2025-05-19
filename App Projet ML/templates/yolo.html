@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YOLOv8 Semantic Segmentation</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+  />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><i class="fas fa-project-diagram"></i> YOLOv8 Segmentation</h1>
+      <p>Upload a video or image to segment with our YOLOv8 model</p>
+    </header>
+
+    <main>
+      <!-- VIDEO UPLOAD -->
+      <div class="upload-container" id="upload-container-video">
+        <h2><i class="fas fa-video"></i> Video</h2>
+        <div class="upload-area">
+          <i class="fas fa-cloud-upload-alt upload-icon"></i>
+          <p>Drag &amp; drop your video here or</p>
+          <label for="video-upload-yolo" class="upload-btn">Browse Files</label>
+          <input
+            type="file"
+            id="video-upload-yolo"
+            accept=".mp4,.avi,.mov,.mkv,.webm"
+            hidden
+          />
+          <p class="file-info">
+            Supported formats: MP4, AVI, MOV, MKV, WEBM (max 500MB)
+          </p>
+        </div>
+
+        <div class="processing-container" style="display: none;">
+          <div class="processing-status">
+            <h2>Processing Video</h2>
+            <div class="progress-container">
+              <div class="progress-bar" style="width: 0%;">0%</div>
+            </div>
+            <p id="status-message">Uploading video...</p>
+          </div>
+          <button class="segment-btn" disabled>
+            <i class="fas fa-cut"></i> Segment Video
+          </button>
+        </div>
+      </div>
+
+      <!-- IMAGE UPLOAD -->
+      <div class="upload-container" id="upload-container-image" style="margin-top:3rem;">
+        <h2><i class="fas fa-image"></i> Image</h2>
+        <div class="upload-area">
+          <i class="fas fa-cloud-upload-alt upload-icon"></i>
+          <p>Drag &amp; drop your image here or</p>
+          <label for="image-upload-yolo" class="upload-btn">Browse Files</label>
+          <input
+            type="file"
+            id="image-upload-yolo"
+            accept=".jpg,.jpeg,.png,.bmp"
+            hidden
+          />
+          <p class="file-info">
+            Supported formats: JPG, PNG, JPEG, BMP (max 50MB)
+          </p>
+        </div>
+
+        <div class="processing-container" style="display: none;">
+          <div class="processing-status">
+            <h2>Processing Image</h2>
+            <div class="loading-spinner"></div>
+            <p id="status-message">Uploading image...</p>
+          </div>
+          <button class="segment-btn" disabled>
+            <i class="fas fa-cut"></i> Segment Image
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Road Semantic Segmentation Project</p>
+    </footer>
+  </div>
+
+  <!-- Error Modal (shared) -->
+  <div class="modal" id="error-modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2><i class="fas fa-exclamation-triangle"></i> Error</h2>
+      <p id="error-message"></p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

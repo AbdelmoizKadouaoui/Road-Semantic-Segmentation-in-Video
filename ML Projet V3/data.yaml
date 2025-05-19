@@ -1,0 +1,25 @@
+# data.yaml
+path: C:/Users/MBQ/Desktop/ML Projet Test/ML Projet V3/dataset
+
+train: train/img
+val:   val/img
+
+nc: 11
+names:
+  0: static
+  1: road_sidewalk_parking
+  2: traffic
+  3: person
+  4: vehicle
+  5: pole
+  6: structure
+  7: ground
+  8: vegetation
+  9: terrain
+  10: sky
+
+mode: segment
+
+
+
+
